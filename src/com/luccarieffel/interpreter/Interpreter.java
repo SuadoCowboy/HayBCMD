@@ -2,6 +2,7 @@ package com.luccarieffel.interpreter;
 
 import com.luccarieffel.interpreter.command.BaseCommands;
 import com.luccarieffel.interpreter.command.Command;
+import com.luccarieffel.interpreter.compatibility.Output;
 
 import java.util.*;
 
@@ -10,6 +11,7 @@ public class Interpreter {
 
     public static void main(String[] args) {
         BaseCommands.init(variables);
+        Output.init(System.out::print, System.out::println);
 
         new Command("quit", 0, 0, null, "quits the program.");
 

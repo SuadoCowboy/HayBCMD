@@ -1,5 +1,7 @@
 package com.luccarieffel.interpreter.command;
 
+import com.luccarieffel.interpreter.compatibility.Output;
+
 import java.util.Dictionary;
 import java.util.Iterator;
 import java.util.List;
@@ -21,7 +23,7 @@ public class BaseCommands {
         {
             Command.getCommand(args.get(0)).ifPresentOrElse(
                     Command::printUsage,
-                    () -> System.out.println("Unknown command \"" + args.get(0) + "\"")
+                    () -> Output.println("Unknown command \"" + args.get(0) + "\"")
             );
             return;
         }
@@ -38,7 +40,7 @@ public class BaseCommands {
             stringBuilder.append(arg);
         }
 
-        System.out.println(stringBuilder);
+        Output.println(stringBuilder.toString());
     }
 
     /**
@@ -47,7 +49,7 @@ public class BaseCommands {
     protected static void alias(String name, int minArgs, int maxArgs, String usage, List<String> args) {
         if (args.size() == 2) {
             if (Command.getCommand(args.get(0)).isPresent()) {
-                System.out.println("varName is a command name, therefore this variable can not be created");
+                Output.println("varName is a command name, therefore this variable can not be created");
                 return;
             }
 
@@ -67,7 +69,7 @@ public class BaseCommands {
             stringBuilder.append(key).append(" = \"").append(variables.get(key)).append("\"");
         }
 
-        System.out.println(stringBuilder);
+        Output.println(stringBuilder.toString());
     }
 
     // TODO: incrementvar command(maybe create it's own class)

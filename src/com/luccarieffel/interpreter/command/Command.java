@@ -1,5 +1,7 @@
 package com.luccarieffel.interpreter.command;
 
+import com.luccarieffel.interpreter.compatibility.Output;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -30,7 +32,7 @@ public record Command(String name, int minArgs, int maxArgs, ICommandRunFunc run
     }
 
     public static void printUsage(Command command) {
-        System.out.println(command.name() + " " + command.usage());
+        Output.println(command.name() + " " + command.usage());
     }
 
     public Command(String name, int minArgs, int maxArgs, ICommandRunFunc runFunc, String usage) {

@@ -1,6 +1,7 @@
 ### IntelliJ IDEA ###
 out
 .idea
+target
 
 ### Eclipse ###
 .apt_generated

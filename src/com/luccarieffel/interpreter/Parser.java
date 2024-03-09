@@ -1,6 +1,7 @@
 package com.luccarieffel.interpreter;
 
 import com.luccarieffel.interpreter.command.Command;
+import com.luccarieffel.interpreter.compatibility.Output;
 import com.luccarieffel.interpreter.token.Token;
 import com.luccarieffel.interpreter.token.TokenType;
 
@@ -17,6 +18,7 @@ public class Parser {
     public Parser(Lexer lexer, Dictionary<String, String> variables) {
         this.lexer = lexer;
         this.variables = variables;
+
         advance();
     }
 
@@ -40,7 +42,7 @@ public class Parser {
                 {
                     Optional<Command> commandOptional = Command.getCommand(commandString);
                     if (commandOptional.isEmpty()) {
-                        System.out.println("Unknown command \"" + commandString + "\"");
+                        Output.println("Unknown command \"" + commandString + "\"");
                         continue;
                     }
 
@@ -84,7 +86,7 @@ public class Parser {
                 if (arguments.size() > command.maxArgs() || arguments.size() < command.minArgs()) {
                     Command.printUsage(command);
                     if (!arguments.isEmpty())
-                        System.out.println("arguments size must be within range [" + command.minArgs() + "," + command.maxArgs() + "], but size is " + arguments.size());
+                        Output.println("arguments size must be within range [" + command.minArgs() + "," + command.maxArgs() + "], but size is " + arguments.size());
                     continue;
                 }
 
@@ -92,7 +94,7 @@ public class Parser {
             }
 
             else {
-                System.out.println("Unknown command \"" + currentToken.value() + "\"");
+                Output.println("Unknown command \"" + currentToken.value() + "\"");
                 return;
             }
 
