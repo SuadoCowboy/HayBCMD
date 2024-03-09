@@ -38,7 +38,7 @@ public class BaseCommands {
             stringBuilder.append(arg);
         }
 
-        System.out.println(stringBuilder.toString());
+        System.out.println(stringBuilder);
     }
 
     /**
@@ -67,7 +67,7 @@ public class BaseCommands {
             stringBuilder.append(key).append(" = \"").append(variables.get(key)).append("\"");
         }
 
-        System.out.println(stringBuilder.toString());
+        System.out.println(stringBuilder);
     }
 
     // TODO: incrementvar command(maybe create it's own class)
