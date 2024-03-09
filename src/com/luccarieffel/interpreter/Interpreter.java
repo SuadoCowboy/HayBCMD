@@ -1,11 +1,11 @@
-package com.luccarieffel.interpreter.command;
+package com.luccarieffel.interpreter;
 
-import com.luccarieffel.interpreter.Lexer;
-import com.luccarieffel.interpreter.Parser;
+import com.luccarieffel.interpreter.command.BaseCommands;
+import com.luccarieffel.interpreter.command.Command;
 
 import java.util.*;
 
-public class CommandInterpreter {
+public class Interpreter {
     private static final Dictionary<String, String> variables = new Hashtable<>();
 
     public static void main(String[] args) {
