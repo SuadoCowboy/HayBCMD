@@ -5,7 +5,6 @@ import com.luccarieffel.interpreter.compatibility.Output;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 public record Command(String name, int minArgs, int maxArgs, ICommandRunFunc runFunc, String usage) {
     private static final List<Command> commands = new ArrayList<>();
@@ -18,12 +17,14 @@ public record Command(String name, int minArgs, int maxArgs, ICommandRunFunc run
         commands.add(command);
     }
 
-    public static Optional<Command> getCommand(String name) {
+    public static Command getCommand(String name, boolean printError) {
         for (Command command : commands)
             if (Objects.equals(command.name, name))
-                return Optional.of(command);
+                return command;
 
-        return Optional.empty();
+        if (printError)
+            Output.println("Unknown command \"" + name + "\"");
+        return null;
 
     }
 

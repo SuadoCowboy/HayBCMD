@@ -9,6 +9,10 @@ public class Output {
         Output.printlnMethod = println;
     }
 
+    public static void printUnknownCommand(String command) {
+        Output.println("Unknown command \"" + command + "\"");
+    }
+
     public static void print(String string) {
         printMethod.print(string);
     }

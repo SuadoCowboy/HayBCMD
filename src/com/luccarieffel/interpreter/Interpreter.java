@@ -3,6 +3,7 @@ package com.luccarieffel.interpreter;
 import com.luccarieffel.interpreter.command.BaseCommands;
 import com.luccarieffel.interpreter.command.Command;
 import com.luccarieffel.interpreter.compatibility.Output;
+import com.luccarieffel.interpreter.parser.Parser;
 
 import java.util.*;
 

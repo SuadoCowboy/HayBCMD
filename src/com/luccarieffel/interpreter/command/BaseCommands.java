@@ -21,10 +21,10 @@ public class BaseCommands {
     protected static void help(String name, int minArgs, int maxArgs, String usage, List<String> args) {
         if (args.size() == 1)
         {
-            Command.getCommand(args.get(0)).ifPresentOrElse(
-                    Command::printUsage,
-                    () -> Output.println("Unknown command \"" + args.get(0) + "\"")
-            );
+            Command command = Command.getCommand(args.get(0), true);
+            if (command != null)
+                Command.printUsage(command);
+
             return;
         }
 
@@ -48,7 +48,7 @@ public class BaseCommands {
      */
     protected static void alias(String name, int minArgs, int maxArgs, String usage, List<String> args) {
         if (args.size() == 2) {
-            if (Command.getCommand(args.get(0)).isPresent()) {
+            if (Command.getCommand(args.get(0), false) != null) {
                 Output.println("varName is a command name, therefore this variable can not be created");
                 return;
             }
@@ -66,10 +66,10 @@ public class BaseCommands {
         Iterator<String> it = variables.keys().asIterator();
         while (it.hasNext()) {
             String key = it.next();
-            stringBuilder.append(key).append(" = \"").append(variables.get(key)).append("\"");
+            stringBuilder.append(key).append(" = \"").append(variables.get(key)).append("\"").append("\n");
         }
 
-        Output.println(stringBuilder.toString());
+        Output.println(stringBuilder.deleteCharAt(stringBuilder.length()-1).toString());
     }
 
     // TODO: incrementvar command(maybe create it's own class)

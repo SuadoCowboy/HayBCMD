@@ -36,6 +36,10 @@ public class Lexer {
         return lastToken;
     }
 
+    public Token getLastToken() {
+        return lastToken;
+    }
+
     /**
      * checks which type the token is
      * @return Token with type ID or Token with type COMMAND
