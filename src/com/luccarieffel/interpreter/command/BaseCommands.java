@@ -2,9 +2,7 @@ package com.luccarieffel.interpreter.command;
 
 import com.luccarieffel.interpreter.compatibility.Output;
 
-import java.util.Dictionary;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 public class BaseCommands {
     private static Dictionary<String, String> variables;
@@ -47,17 +45,23 @@ public class BaseCommands {
      * sets or deletes a variable
      */
     protected static void alias(String name, int minArgs, int maxArgs, String usage, List<String> args) {
-        if (args.size() == 2) {
-            if (Command.getCommand(args.get(0), false) != null) {
-                Output.println("varName is a command name, therefore this variable can not be created");
-                return;
-            }
-
-            variables.put(args.get(0), args.get(1));
+        if (args.size() == 1) {
+            variables.remove(args.get(0));
             return;
         }
 
-        variables.remove(args.get(0));
+        if (Command.getCommand(args.get(0), false) != null) {
+            Output.println("varName is a command name, therefore this variable can not be created");
+            return;
+        }
+
+        // \S = any non-whitespace characters
+        if (!args.get(0).matches("\\S+")) {
+            Output.println("Variable name can not have whitespace.");
+            return;
+        }
+
+        variables.put(args.get(0), args.get(1));
     }
 
     protected static void variables(String name, int minArgs, int maxArgs, String usage, List<String> args) {
@@ -69,7 +73,9 @@ public class BaseCommands {
             stringBuilder.append(key).append(" = \"").append(variables.get(key)).append("\"").append("\n");
         }
 
-        Output.println(stringBuilder.deleteCharAt(stringBuilder.length()-1).toString());
+        Output.println("amount of variables: " + Arrays.stream(stringBuilder.toString().split("\n")).filter((s) -> !Objects.equals(s, "")).count());
+        if (!stringBuilder.isEmpty())
+            Output.println(stringBuilder.deleteCharAt(stringBuilder.length()-1).toString());
     }
 
     // TODO: incrementvar command(maybe create it's own class)
