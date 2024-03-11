@@ -36,7 +36,19 @@ public class Parser {
     }
 
     /**
-     * Gets string and variable tokens to a list of arguments.
+     * Advances until the currentToken.type is one of the tokenTypes
+     * @param tokenTypes A list of token types to check if currentToken.type is equal to
+     */
+    protected void advanceUntil(List<TokenType> tokenTypes) {
+        advance(); // always skip the first one
+
+        // checks if EOF is reached because if not, it would run forever
+        while (!tokenTypes.contains((currentToken.type())) && currentToken.type() != TokenType.EOF)
+            advance();
+    }
+
+    /**
+     * Gets string and variable tokens to a list of arguments.<br>
      * Might return an empty String list.
      * @return list of arguments
      */
@@ -45,7 +57,8 @@ public class Parser {
 
         while (currentToken.type() != TokenType.EOF && currentToken.type() != TokenType.EOS) {
 
-            if (currentToken.type() == TokenType.STRING)
+            // yes... it's also appending command type.
+            if (currentToken.type() == TokenType.STRING || currentToken.type() == TokenType.COMMAND)
                 arguments.add(currentToken.value());
 
             else if (currentToken.type() == TokenType.VARIABLE) {
@@ -123,7 +136,7 @@ public class Parser {
 
             else {
                 Output.printUnknownCommand(currentToken.value());
-                return;
+                advanceUntil(List.of(TokenType.EOS));
             }
 
             advance();

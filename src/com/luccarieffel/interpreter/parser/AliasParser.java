@@ -5,6 +5,7 @@ import com.luccarieffel.interpreter.compatibility.Output;
 import com.luccarieffel.interpreter.token.TokenType;
 
 import java.util.Dictionary;
+import java.util.List;
 
 /**
  * Parses alias so that it can make loops without stackoverflow issue
@@ -49,7 +50,7 @@ public class AliasParser extends Parser {
 
             else {
                 Output.printUnknownCommand(currentToken.value());
-                return;
+                advanceUntil(List.of(TokenType.EOS));
             }
 
             advance();
