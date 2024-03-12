@@ -23,6 +23,10 @@ public class Lexer {
         char currentChar = input.charAt(position);
         while (Character.isWhitespace(currentChar)) {
             position++;
+
+            if (position >= input.length())
+                return new Token(TokenType.EOF, "");
+
             currentChar = input.charAt(position);
         }
 
