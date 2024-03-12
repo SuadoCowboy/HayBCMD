@@ -23,7 +23,7 @@ public record Command(String name, int minArgs, int maxArgs, ICommandRunFunc run
                 return command;
 
         if (printError)
-            Output.println("Unknown command \"" + name + "\"");
+            Output.println("unknown command \"" + name + "\"");
         return null;
 
     }

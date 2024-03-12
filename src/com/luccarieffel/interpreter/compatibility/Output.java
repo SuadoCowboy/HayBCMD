@@ -10,7 +10,7 @@ public class Output {
     }
 
     public static void printUnknownCommand(String command) {
-        Output.println("Unknown command \"" + command + "\"");
+        Output.println("unknown command \"" + command + "\"");
     }
 
     public static void print(String string) {
