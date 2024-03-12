@@ -1,6 +1,7 @@
 package com.luccarieffel.interpreter.command;
 
 import com.luccarieffel.interpreter.compatibility.Output;
+import com.luccarieffel.interpreter.util.Converter;
 
 import java.util.*;
 
@@ -12,8 +13,9 @@ public class BaseCommands {
 
         new Command("help", 0, 1, BaseCommands::help, "<command?> - shows a list of commands usages or the usage of a specific command");
         new Command("echo", 1, 1, BaseCommands::echo, "<message> - echoes a message to the console");
-        new Command("alias", 1, 2, BaseCommands::alias, "<varName> <commands> - creates/deletes variables");
+        new Command("alias", 1, 2, BaseCommands::alias, "<var> <commands?> - creates/deletes variables");
         new Command("variables", 0, 0, BaseCommands::variables, "- list of variables");
+        new Command("incrementvar", 4, 4, BaseCommands::incrementvar, "<var> <minValue> <maxValue> <delta> - increments the value of a variable");
     }
 
     protected static void help(String name, int minArgs, int maxArgs, String usage, List<String> args) {
@@ -78,5 +80,39 @@ public class BaseCommands {
             Output.println(stringBuilder.deleteCharAt(stringBuilder.length()-1).toString());
     }
 
-    // TODO: incrementvar command(maybe create it's own class)
+    /**
+     * increments an already existing variable
+     */
+    protected static void incrementvar(String name, int minArgs, int maxArgs, String usage, List<String> args) {
+        String variable = args.get(0);
+        Double minValue = Converter.convertToDouble(args.get(1));
+        Double maxValue = Converter.convertToDouble(args.get(2));
+        Double delta = Converter.convertToDouble(args.get(3));
+
+        if (minValue == null || maxValue == null || delta == null) {
+            Output.println("One of the variables is not a number");
+            return;
+        }
+
+        String variableValue = variables.get(variable);
+        if (variableValue == null) {
+            Output.println("Unknown variable \"" + variable + "\"");
+            return;
+        }
+
+        Double variableValueAsDouble = Converter.convertToDouble(variableValue);
+        if (variableValueAsDouble == null) {
+            Output.println("variable value \"" + variableValue + "\" is not a number");
+            return;
+        }
+
+        variableValueAsDouble += delta;
+        if (variableValueAsDouble > maxValue)
+            variableValueAsDouble = minValue;
+
+        else if (variableValueAsDouble < minValue)
+            variableValueAsDouble = maxValue;
+
+        variables.put(variable, Double.toString(variableValueAsDouble));
+    }
 }
