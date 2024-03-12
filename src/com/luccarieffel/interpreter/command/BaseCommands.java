@@ -15,6 +15,7 @@ public class BaseCommands {
         new Command("echo", 1, 1, BaseCommands::echo, "<message> - echoes a message to the console");
         new Command("alias", 1, 2, BaseCommands::alias, "<var> <commands?> - creates/deletes variables");
         new Command("variables", 0, 0, BaseCommands::variables, "- list of variables");
+        new Command("variable", 1, 1, BaseCommands::variable, "- shows variable value");
         new Command("incrementvar", 4, 4, BaseCommands::incrementvar, "<var> <minValue> <maxValue> <delta> - increments the value of a variable");
     }
 
@@ -59,7 +60,7 @@ public class BaseCommands {
 
         // \S = any non-whitespace characters
         if (!args.get(0).matches("\\S+")) {
-            Output.println("Variable name can not have whitespace.");
+            Output.println("variable name can not have whitespace.");
             return;
         }
 
@@ -80,6 +81,18 @@ public class BaseCommands {
             Output.println(stringBuilder.deleteCharAt(stringBuilder.length()-1).toString());
     }
 
+    protected static void variable(String name, int minArgs, int maxArgs, String usage, List<String> args) {
+        String key = args.get(0);
+        String value = variables.get(key);
+
+        if (value == null) {
+            Output.println("variable \"" + key + "\" does not exist");
+            return;
+        }
+
+        Output.println(key + " = \"" + value + "\"\n");
+    }
+
     /**
      * increments an already existing variable
      */
@@ -90,13 +103,17 @@ public class BaseCommands {
         Double delta = Converter.convertToDouble(args.get(3));
 
         if (minValue == null || maxValue == null || delta == null) {
-            Output.println("One of the variables is not a number");
+            Output.println("one of the variables is not a number");
             return;
+        }
+
+        if (minValue > maxValue) {
+            Output.println("minValue is higher than maxValue");
         }
 
         String variableValue = variables.get(variable);
         if (variableValue == null) {
-            Output.println("Unknown variable \"" + variable + "\"");
+            Output.println("unknown variable \"" + variable + "\"");
             return;
         }
 
