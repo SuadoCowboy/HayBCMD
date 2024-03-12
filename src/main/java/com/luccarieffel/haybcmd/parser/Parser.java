@@ -1,10 +1,10 @@
-package com.luccarieffel.interpreter.parser;
+package com.luccarieffel.haybcmd.parser;
 
-import com.luccarieffel.interpreter.Lexer;
-import com.luccarieffel.interpreter.command.Command;
-import com.luccarieffel.interpreter.compatibility.Output;
-import com.luccarieffel.interpreter.token.Token;
-import com.luccarieffel.interpreter.token.TokenType;
+import com.luccarieffel.haybcmd.Lexer;
+import com.luccarieffel.haybcmd.command.Command;
+import com.luccarieffel.haybcmd.compatibility.Output;
+import com.luccarieffel.haybcmd.token.Token;
+import com.luccarieffel.haybcmd.token.TokenType;
 
 import java.util.ArrayList;
 import java.util.Dictionary;

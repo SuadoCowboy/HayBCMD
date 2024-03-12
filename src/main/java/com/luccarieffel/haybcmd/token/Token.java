@@ -1,4 +1,4 @@
-package com.luccarieffel.interpreter.token;
+package com.luccarieffel.haybcmd.token;
 
 public record Token(TokenType type, String value) {
 

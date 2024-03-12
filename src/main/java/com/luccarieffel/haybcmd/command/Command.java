@@ -1,6 +1,6 @@
-package com.luccarieffel.interpreter.command;
+package com.luccarieffel.haybcmd.command;
 
-import com.luccarieffel.interpreter.compatibility.Output;
+import com.luccarieffel.haybcmd.compatibility.Output;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,7 +1,7 @@
-package com.luccarieffel.interpreter.command;
+package com.luccarieffel.haybcmd.command;
 
-import com.luccarieffel.interpreter.compatibility.Output;
-import com.luccarieffel.interpreter.util.Converter;
+import com.luccarieffel.haybcmd.compatibility.Output;
+import com.luccarieffel.haybcmd.util.Converter;
 
 import java.util.*;
 

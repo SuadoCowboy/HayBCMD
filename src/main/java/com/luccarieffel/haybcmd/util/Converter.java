@@ -1,4 +1,4 @@
-package com.luccarieffel.interpreter.util;
+package com.luccarieffel.haybcmd.util;
 
 public class Converter {
     /**

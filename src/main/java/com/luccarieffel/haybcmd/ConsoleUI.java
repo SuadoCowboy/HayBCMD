@@ -1,7 +1,7 @@
-package com.luccarieffel.interpreter;
+package com.luccarieffel.haybcmd;
 
-import com.luccarieffel.interpreter.compatibility.Output;
-import com.luccarieffel.interpreter.parser.Parser;
+import com.luccarieffel.haybcmd.compatibility.Output;
+import com.luccarieffel.haybcmd.parser.Parser;
 
 import javax.swing.*;
 import java.awt.*;

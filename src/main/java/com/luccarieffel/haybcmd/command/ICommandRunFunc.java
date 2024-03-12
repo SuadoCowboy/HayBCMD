@@ -1,4 +1,4 @@
-package com.luccarieffel.interpreter.command;
+package com.luccarieffel.haybcmd.command;
 
 import java.util.List;
 

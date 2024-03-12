@@ -1,4 +1,4 @@
-package com.luccarieffel.interpreter.compatibility;
+package com.luccarieffel.haybcmd.compatibility;
 
 public class Output {
     private static IPrint printMethod;

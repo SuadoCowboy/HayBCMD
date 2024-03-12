@@ -1,7 +1,5 @@
 ### IntelliJ IDEA ###
-out
 .idea
-target
 
 ### Eclipse ###
 .apt_generated
@@ -12,7 +10,7 @@ target
 .springBeans
 .sts4-cache
 bin/
-!**/src/main/**/bin/
+!**/src/**/bin/
 !**/src/test/**/bin/
 
 ### NetBeans ###
@@ -27,3 +25,7 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+### Gradle ###
+.gradle
+build

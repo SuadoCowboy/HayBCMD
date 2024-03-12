@@ -1,4 +1,4 @@
-package com.luccarieffel.interpreter.compatibility;
+package com.luccarieffel.haybcmd.compatibility;
 
 @FunctionalInterface
 public interface IPrint {

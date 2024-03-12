@@ -1,4 +1,4 @@
-package com.luccarieffel.interpreter.token;
+package com.luccarieffel.haybcmd.token;
 
 public enum TokenType {
     VARIABLE,
