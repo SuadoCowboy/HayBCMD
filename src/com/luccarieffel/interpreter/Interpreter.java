@@ -19,7 +19,7 @@ public class Interpreter {
             return;
         }
 
-        if (!Objects.equals(args[0], "--console") || !Objects.equals(args[0], "-c"))
+        if (!Objects.equals(args[0], "--console") && !Objects.equals(args[0], "-c"))
             return;
 
         Output.init(System.out::print, System.out::println);
@@ -28,9 +28,8 @@ public class Interpreter {
         while (true) {
             String input = scanner.nextLine();
 
-            if (Objects.equals(input, "quit")) {
+            if (Objects.equals(input, "quit"))
                 break;
-            }
 
             new Parser(new Lexer(input), variables).parse();
         }
