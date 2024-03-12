@@ -12,12 +12,19 @@ public class Interpreter {
 
     public static void main(String[] args) {
         BaseCommands.init(variables);
-        Output.init(System.out::print, System.out::println);
-
         new Command("quit", 0, 0, null, "quits the program.");
 
-        Scanner scanner = new Scanner(System.in);
+        if (args.length == 0) {
+            new ConsoleUI(variables).setVisible(true);
+            return;
+        }
 
+        if (!Objects.equals(args[0], "--console") || !Objects.equals(args[0], "-c"))
+            return;
+
+        Output.init(System.out::print, System.out::println);
+
+        Scanner scanner = new Scanner(System.in);
         while (true) {
             String input = scanner.nextLine();
 
