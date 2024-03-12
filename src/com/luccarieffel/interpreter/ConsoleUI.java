@@ -12,11 +12,11 @@ public class ConsoleUI extends JFrame {
     private final JTextArea outputTextArea;
     private final JTextField inputTextField;
 
-    private void print(String message) {
+    private void addTextToOutputTextArea(String message) {
         outputTextArea.setText(outputTextArea.getText() + message);
     }
 
-    private void println(String message) {
+    private void addTextToOutputTextAreaWithNewLine(String message) {
         outputTextArea.setText(outputTextArea.getText() + message + "\n");
     }
 
@@ -43,7 +43,14 @@ public class ConsoleUI extends JFrame {
         scrollPane.setBorder(null);
         add(scrollPane, BorderLayout.CENTER);
 
-        Output.init(this::print, this::println);
+        // wow those functions names are big haha...
+        Output.init(this::addTextToOutputTextArea, this::addTextToOutputTextAreaWithNewLine);
+
+        try {
+            UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+        } catch (UnsupportedLookAndFeelException | ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+            Output.println("ERROR: Could not set look and feel");
+        }
 
         inputTextField = new JTextField();
         inputTextField.setForeground(Color.WHITE); // Set text color
