@@ -3,8 +3,8 @@ plugins {
     `maven-publish`
 }
 
-group = "com.luccarieffel"
-version = "1.0.0"
+val group = "com.luccarieffel"
+val version = "1.0.0"
 
 repositories {
     mavenCentral()
@@ -18,29 +18,35 @@ publishing {
         register("mavenJava", MavenPublication::class) {
             from(components["java"])
 
-            groupId = "com.luccarieffel"
+            // Configure the publication
+            groupId = group
             artifactId = "haybcmd"
-            version = "1.0.0"
+            this.version = version
+
+            pom {
+                // Specify SCM information
+                scm {
+                    connection.set("scm:git:git://github.com/SuadoCowboy/HayBCMD.git")
+                    developerConnection.set("scm:git:git@github.com:SuadoCowboy/HayBCMD.git")
+                    url.set("https://github.com/SuadoCowboy/HayBCMD")
+                }
+            }
         }
     }
 
     repositories {
         maven {
-            // Maven Central URL
             url = uri("https://repo.maven.apache.org/maven2")
+            credentials {
+                username = project.findProperty("mavenUsername")?.toString()
+                password = project.findProperty("mavenPassword")?.toString()
+            }
         }
     }
 }
 
-scm {
-    connection = "scm:git:git://github.com/SuadoCowboy/HayBCMD.git"
-    developerConnection = "scm:git:git@github.com:SuadoCowboy/HayBCMD.git"
-    url = "https://github.com/SuadoCowboy/HayBCMD"
-}
-
 tasks.register("cleanDist") {
     doLast {
-        // Clean the build directory
         file("build").deleteRecursively()
     }
 }
