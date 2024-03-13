@@ -1,5 +1,6 @@
 ### IntelliJ IDEA ###
 .idea
+target
 
 ### Eclipse ###
 .apt_generated
@@ -25,8 +26,3 @@ bin/
 
 ### Mac OS ###
 .DS_Store
-
-### Gradle ###
-gradle.properties
-.gradle
-build
