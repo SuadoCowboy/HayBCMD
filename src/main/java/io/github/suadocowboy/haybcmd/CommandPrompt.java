@@ -37,14 +37,14 @@ public class CommandPrompt {
     /**
      * Runs in a simple UI
      */
-    protected static void runUI() {
+    private static void runUI() {
         new ConsoleUI(variables).setVisible(true);
     }
 
     /**
      * Runs in command prompt
      */
-    protected static void runCMD(Scanner scanner) {
+    private static void runCMD(Scanner scanner) {
         Output.init(System.out::print, System.out::println);
 
         while (true) {
@@ -60,7 +60,7 @@ public class CommandPrompt {
     /**
      * inits BaseCommands and creates a quit command with null run function
      */
-    protected static void init() {
+    private static void init() {
         BaseCommands.init(variables);
         new Command("quit", 0, 0, null, "quits the program.");
     }
